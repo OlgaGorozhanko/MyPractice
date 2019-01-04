@@ -1,17 +1,19 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
+[assembly: InternalsVisibleTo("AlgorithmicTests")]
 
 namespace Algorithmic
-{    
+{
     class Program
     {
         static void Main(string[] args)
-        {
-            DifferentTasks.RunMutuallySimpleNumber();   
+        {           
+            DifferentTasks.RunMutuallySimpleNumber();
             DifferentTasks.RunPerfectNumbersOnALine();
-            ArraysTask.RunSummaTwoSmallestAndTwoLargestElementArray();
+            ArraysTasks.RunSummaTwoSmallestAndTwoLargestElementArray();
             DifferentTasks.RunTranslationOfNumberSystems();
-            StringTask.RunSortText();
-            ArraysTask.RunMaximumDoesNotDecreaseSequence();
+            StringTasks.RunSortText();
+            ArraysTasks.RunMaximumDoesNotDecreaseSequence();
         }
     }
 }

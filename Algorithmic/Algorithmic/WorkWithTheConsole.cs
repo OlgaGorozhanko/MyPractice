@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Algorithmic
 {
@@ -41,7 +45,7 @@ namespace Algorithmic
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Output(" " + textError);
-            Console.ForegroundColor = ConsoleColor.Gray;            
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
 
         // вывод на экран сообщения о правильности
@@ -58,20 +62,20 @@ namespace Algorithmic
             try
             {
                 Output(text);
-                intValue = Convert.ToInt32(Console.ReadLine());                
+                intValue = Convert.ToInt32(Console.ReadLine());
             }
             catch (FormatException)
             {
                 OutputError("DATA TYPE ERROR. Enter a number\n");
                 InputInt32(text, ref intValue);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 OutputError("ERROR\n");
                 InputInt32(text, ref intValue);
             }
         }
-        
+
         // ввод значения типа String
         static public void InputString(string text, ref string stringValue)
         {
