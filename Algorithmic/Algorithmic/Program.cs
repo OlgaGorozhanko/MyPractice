@@ -8,11 +8,10 @@ namespace Algorithmic
     {        
         static void Main(string[] args)
         {
-            //  DifferentTasks.RunMutuallySimpleNumber();
-            //  DifferentTasks.RunPerfectNumbersOnALine();
-            //  ArraysTasks.RunSummaTwoSmallestAndTwoLargestElementArray();
-            //  DifferentTasks.RunTranslationOfNumberSystems();
-            Console.WriteLine("int от * = {0}",(int)'*');
+            DifferentTasks.RunMutuallySimpleNumber();
+            DifferentTasks.RunPerfectNumbersOnALine();
+            ArraysTasks.RunSummaTwoSmallestAndTwoLargestElementArray();
+            DifferentTasks.RunTranslationOfNumberSystems();            
             StringTasks.RunSortText();
             ArraysTasks.RunMaximumDoesNotDecreaseSequence();
         }
