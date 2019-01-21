@@ -12,29 +12,31 @@ namespace Algorithmic
     class WorkWithTheConsole
     {
         // вывод на экран темы
-        static public void OutputTitle(string textTitle)
+        static internal string OutputTitle(string textTitle)
         {
             WorkWithTheConsole.Output("\n\t\tTASK: " + textTitle + "\n");
+            return "\n\t\tTASK: " + textTitle + "\n";
         }
 
-        // вывод на экран решения
+        // вывод на экран решения (нельзя тестировать: работа с консолью)
         static public void Output(string text, string textValue)
         {
             Console.WriteLine(text + "{0}", textValue);
         }
 
-        // вывод на экран решения
+        // вывод на экран решения (нельзя тестировать: работа с консолью)
         static public void Output(string text, int intValue)
         {
             Console.WriteLine(text + "{0}", intValue.ToString());
         }
 
-        // вывод на экран сообщения
+        // вывод на экран сообщения (нельзя тестировать: работа с консолью)
         static public void Output(string text)
         {
             Console.Write(text);
         }
 
+        // вывод на экран число (нельзя тестировать: работа с консолью)
         static public void Output(int intValue)
         {
             Console.Write(intValue);
@@ -56,7 +58,7 @@ namespace Algorithmic
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
-        // ввод значения типа Int32
+        // ввод значения типа Int32 (для программы)
         static public void InputInt32(string text, ref int intValue)
         {
             try
@@ -73,6 +75,26 @@ namespace Algorithmic
             {
                 OutputError("ERROR\n");
                 InputInt32(text, ref intValue);
+            }
+        }
+
+        // ввод значения типа Int32 (для тестов)
+        static internal string InputInt32Tests( ref object intValue)
+        {
+            try
+            {
+                intValue = Convert.ToInt32(intValue);
+                return intValue.ToString();
+            }
+            catch (FormatException)
+            {
+                OutputError("DATA TYPE ERROR. Enter a number");
+                return "DATA TYPE ERROR. Enter a number";
+            }
+            catch (Exception)
+            {
+                OutputError("ERROR");
+                return "ERROR";
             }
         }
 

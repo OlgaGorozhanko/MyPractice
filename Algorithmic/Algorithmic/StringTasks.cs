@@ -11,7 +11,6 @@ namespace Algorithmic
             WorkWithTheConsole.OutputTitle("Сортировать буквы в строке по алфавиту");
             InputString();
             SortAlphabet(stringEntered);
-            WorkWithTheConsole.ScreenDelay();
         }
 
         static string stringEntered;
@@ -24,7 +23,7 @@ namespace Algorithmic
             WorkWithTheConsole.InputString("Enter string: ", ref stringEntered);
             if (stringEntered == "")
             {
-                WorkWithTheConsole.Output("You did not enter a string.");
+                WorkWithTheConsole.OutputError("You did not enter a string.\n");
                 InputString();
             }
         }
@@ -37,7 +36,7 @@ namespace Algorithmic
             {
                 for (int j = i + 1; j < stringInput.Length; j++)
                 {
-                    Swap(SmallLettersInLarge(stringResult[i]), SmallLettersInLarge(stringResult[j]), ref stringResult[i], ref stringResult[j]);
+                    SwapCharAndChar(SmallLettersInLarge(stringResult[i]), SmallLettersInLarge(stringResult[j]), ref stringResult[i], ref stringResult[j]);
                 }
             }
             WorkWithTheConsole.Output("Start string:", stringInput);
@@ -68,8 +67,8 @@ namespace Algorithmic
             }
         }
 
-        // метод для обмена элементами
-        static public char[] Swap(double numberLess, double numberLarger, ref char charLess, ref char charLarger)
+        // метод для обмена элементами (два типа Char)
+        static public char[] SwapCharAndChar(double numberLess, double numberLarger, ref char charLess, ref char charLarger)
         {
             char[] arrayCharSwap = new char[2];
             char swap = ' ';
@@ -82,6 +81,22 @@ namespace Algorithmic
             arrayCharSwap[0] = charLess;
             arrayCharSwap[1] = charLarger;
             return arrayCharSwap;
+        }
+
+        // метод для обмена элементами (два типа Int32)
+        static public int[] SwapIntAndInt(ref int numberLess,ref int numberLarger)
+        {
+            int[] arrayIntSwap = new int[2];
+            int swap = 0;
+            if (numberLess > numberLarger)
+            {
+                swap = numberLess;
+                numberLess = numberLarger;
+                numberLarger = swap;
+            }
+            arrayIntSwap[0] = numberLess;
+            arrayIntSwap[1] = numberLarger;
+            return arrayIntSwap;
         }
     }
 }

@@ -13,9 +13,7 @@ namespace Algorithmic
         // проверка на корректность ввода размера массива для чтения с консоли (тесты виснут из-за консоли)
       static void InputInvalidSizeArray(ref int size, string textConsole)
          {
-             int number = 0;          
-             try
-             {
+             int number = 0;   
                  WorkWithTheConsole.InputInt32(textConsole, ref number);   
                  if (number <= 0)
                  {
@@ -23,17 +21,11 @@ namespace Algorithmic
                      InputInvalidSizeArray(ref size, textConsole);                    
                  }
                  else
-                     size = number;                
-             }
-             catch (FormatException)
-             {
-                 WorkWithTheConsole.OutputError("DATA TYPE ERROR. Enter a number\n");
-                 InputInvalidSizeArray(ref size, textConsole);
-             }           
+                     size = number;    
          }
  
         // проверка на корректность ввода размера массива для тестов
-        internal static string InputInvalidSizeArrayTests( int sizeNumber)
+        internal static string InputInvalidSizeArrayTests(int sizeNumber)
         {
             string returnSize;
             if (sizeNumber <= 0)
@@ -74,12 +66,12 @@ namespace Algorithmic
              // поиск максимальной неубвающей последовательности
              internal static int[] MaximumDoesNotDecreaseSequence(int[] array)
              {
-                 int iStartMax = 0;      // индекс 1-ого элемента макс последовательности
-                 int iFinMax = 0;        // индекс последнего элемента макс последовательности
-                 int amountMax = 0;      // максимальное количество элементов в макс последовательности
+                 int iStartMax = -1;      // индекс 1-ого элемента макс последовательности
+                 int iFinMax = -1;        // индекс последнего элемента макс последовательности
+                 int amountMax = -1;      // максимальное количество элементов в макс последовательности
                  int amountCurrent = 0;  // максимальное количество элемонтов в тек последовательности
-                 int iStartCurrent = 0;  // индекс 1-ого элемента текущей последовательности
-                 int iFinCurrent = 0;    // индекс последнего элемента текущей последовательности
+                 int iStartCurrent = -1;  // индекс 1-ого элемента текущей последовательности
+                 int iFinCurrent = -1;    // индекс последнего элемента текущей последовательности
                  bool flag = false;              // флаг для проверки неубывающей последовательности
 
                  for (int i = 0; i < array.Length - 1; i++)
@@ -109,30 +101,38 @@ namespace Algorithmic
                      }
                  }
 
-                 WorkWithTheConsole.Output("Start array: ");
-                 for (int i = 0; i < array.Length; i++)
-                 {
-                     WorkWithTheConsole.Output(" ");
-                     WorkWithTheConsole.Output(array[i]);
-                 }
-                 WorkWithTheConsole.Output("\nStart index maximum sequence: ", iStartMax);
-                 WorkWithTheConsole.Output("Finish index maximum sequence: ", iFinMax);
-                 WorkWithTheConsole.Output("Maximum sequence: ");
-                 for (int i = iStartMax; i <= iFinMax; i++)
-                 {
-                     WorkWithTheConsole.Output(" ");
-                     WorkWithTheConsole.Output(array[i]);
-                 }
+            if (amountMax != -1)
+            {
+                WorkWithTheConsole.Output("Start array: ");
+                for (int i = 0; i < array.Length; i++)
+                {
+                    WorkWithTheConsole.Output(" ");
+                    WorkWithTheConsole.Output(array[i]);
+                }
+                WorkWithTheConsole.Output("\nStart index maximum sequence: ", iStartMax);
+                WorkWithTheConsole.Output("Finish index maximum sequence: ", iFinMax);
+                WorkWithTheConsole.Output("Maximum sequence: ");
+                for (int i = iStartMax; i <= iFinMax; i++)
+                {
+                    WorkWithTheConsole.Output(" ");
+                    WorkWithTheConsole.Output(array[i]);
+                }
 
-                 // для тестов
-                 int[] arrayTests = new int [iFinMax - iStartMax+1];
-                 int j = 0;
-                 for (int i = iStartMax; i <= iFinMax; i++)
-                 {
-                     arrayTests[j] = array[i];
-                     ++j;
-                 }
-                 return arrayTests;
+                // для тестов
+                int[] arrayTests = new int[iFinMax - iStartMax + 1];
+                int j = 0;
+                for (int i = iStartMax; i <= iFinMax; i++)
+                {
+                    arrayTests[j] = array[i];
+                    ++j;
+                }
+                return arrayTests;
+            }
+            else
+            {
+                WorkWithTheConsole.OutputError("Does not decrease sequence missing");
+                return null;
+            }
              }
 
              /// <summary>
@@ -143,11 +143,10 @@ namespace Algorithmic
                  WorkWithTheConsole.OutputTitle("Найти сумму второго наибольшего и второго наименьшего элемента массива");
                  InputOneDimensionalArray();
                  FindSummaTwoSmallestAndTwoLargestElementArray(array);
-                 WorkWithTheConsole.ScreenDelay();
              }
 
              // поиск суммы второго наибольшего и второго наименьшего элемента массива
-             internal static int FindSummaTwoSmallestAndTwoLargestElementArray(int[] array)
+             internal static string FindSummaTwoSmallestAndTwoLargestElementArray(int[] array)
              {
                  int number = array[0];
                  bool flag = false;
@@ -160,13 +159,13 @@ namespace Algorithmic
                  {
                      WorkWithTheConsole.Output("The 2nd largest elements = ", array[1]);
                      WorkWithTheConsole.Output("The 2nd smallest element = ", array[array.Length - 2]);
-                     WorkWithTheConsole.Output("The sum of the 2nd largest and 2nd smallest elements of the array = ", array[1] + array[array.Length - 2]);
-                     return array[1] + array[array.Length - 2];
+                     WorkWithTheConsole.Output("The sum of the 2nd largest and 2nd smallest elements of the array = {0}\n", array[1] + array[array.Length - 2]);
+                     return (array[1] + array[array.Length - 2]).ToString();
                  }
                  else
                  {
-                     WorkWithTheConsole.Output("All elements are equal");
-                     return array[1] + array[array.Length - 2];
+                     WorkWithTheConsole.OutputError("All elements are equal\n");
+                     return "All elements are equal";
                  }
              }
          }

@@ -14,20 +14,20 @@ namespace Algorithmic
         {
             WorkWithTheConsole.OutputTitle("Определить являются ли целые числа взаимпнопростыми");
             InputWholeNumbers();
-            GreatestCommonDivisorEvclidAlgorithm(firstNumber, secondNumber);            
-            WorkWithTheConsole.ScreenDelay();
+            GreatestCommonDivisorEvclidAlgorithm( firstNumber, secondNumber);    
         }
 
         static int firstNumber;
         static int secondNumber;
         static bool naturalNumberFlag = false;
+        static int NOD;
 
 
         // ввод двух целых чисел
         static void InputWholeNumbers()
         {
             WorkWithTheConsole.InputInt32("Enter 2 whole numbers\n 1st number = ", ref firstNumber);
-            WorkWithTheConsole.InputInt32(" 2st number = ", ref secondNumber);
+            WorkWithTheConsole.InputInt32(" 2st number = ", ref secondNumber);           
         }
 
         // модуль натурального числа
@@ -42,11 +42,11 @@ namespace Algorithmic
         }
 
         // алгоритм поиска НОД (Наибольший общий делитель)
-       internal static double GreatestCommonDivisorEvclidAlgorithm(int firstNumber, int secondNumber)
+        internal static double GreatestCommonDivisorEvclidAlgorithm(int firstNumber, int secondNumber)
         {
             naturalNumberFlag = false;
             NaturalNumber(ref firstNumber, ref naturalNumberFlag);
-            NaturalNumber(ref secondNumber, ref naturalNumberFlag);
+             NaturalNumber(ref secondNumber, ref naturalNumberFlag);
             if (naturalNumberFlag == true)
             {
                 OutputMutuallySimpleNumbers();
@@ -57,7 +57,8 @@ namespace Algorithmic
                 if (firstNumber % secondNumber == 0)
                 {
                     OutputMutuallySimpleNumbers();
-                    return secondNumber;
+                    NOD = secondNumber;
+                    return NOD;
                 }
                 else
                 {
@@ -70,7 +71,8 @@ namespace Algorithmic
                 if (secondNumber % firstNumber == 0)
                 {
                     OutputMutuallySimpleNumbers();
-                    return firstNumber;
+                    NOD = firstNumber;
+                    return NOD;
                 }
                 else
                 {
@@ -78,7 +80,7 @@ namespace Algorithmic
                     return GreatestCommonDivisorEvclidAlgorithm(firstNumber, secondNumber);
                 }
             }
-            
+
         }
 
         // вывод на экран решение задачи на определение являются ли два числа взаимнопростыми
@@ -88,7 +90,7 @@ namespace Algorithmic
             {
                 WorkWithTheConsole.OutputError("Number 0 it is not natural, therefore it can not be coprime with any number\n");
             }
-            else if (GreatestCommonDivisorEvclidAlgorithm(firstNumber, secondNumber) == 1)
+            else if (NOD == 1)
             {
                 WorkWithTheConsole.OutputVerity("Numbers " + firstNumber + " and " + secondNumber + " are mutually simple, because their NOD = 1 \n");
             }
@@ -107,7 +109,6 @@ namespace Algorithmic
             WorkWithTheConsole.OutputTitle("Найти совершенные числа на отрезке");
             InputStartAndEndSegment();
             PerfectNumberToFind(startLine, finishLine);
-            WorkWithTheConsole.ScreenDelay();
         }
 
         static int startLine;
@@ -124,32 +125,35 @@ namespace Algorithmic
         // алгоритм поиска совершенных чисел
         internal static string PerfectNumberToFind(int startLine, int finishLine)
         {
+            perfectNumber = "";
             int number;
             int summa;
-            bool flag = false;
+            bool flag = false;            
+            StringTasks.SwapIntAndInt(ref startLine, ref finishLine);
             for (number = startLine; number < finishLine; number++)
-            {
-                summa = 0;
-                if (number % 2 == 0)
                 {
-                    for (int index = 1; index <= number / 2; index++)
+                    summa = 0;
+                    if (number % 2 == 0)
                     {
-                        if (number % index == 0)
+                        for (int index = 1; index <= number / 2; index++)
                         {
-                            summa = summa + index;
-                            if (index == number / 2 && number == summa)
+                            if (number % index == 0)
                             {
-                                perfectNumber += " " + number;
-                                flag = true;
+                                summa = summa + index;
+                                if (index == number / 2 && number == summa)
+                                {
+                                    perfectNumber += " " + number;
+                                    flag = true;
+                                }
                             }
                         }
                     }
+                    else continue;
                 }
-                else continue;
-            }
-            OutputPerfectNumbers(perfectNumber, flag);
-            if (flag) return "Perfect number: " + perfectNumber;
-            else return "No perfect numbers";
+                OutputPerfectNumbers(perfectNumber, flag);
+                if (flag) return "Perfect number: " + perfectNumber;
+                else return "No perfect numbers";
+                        
         }
 
         // вывод на экран решение задачи по поиску совершенных чисел на отрезке
@@ -160,7 +164,6 @@ namespace Algorithmic
                 WorkWithTheConsole.Output("Perfect number:", perfectNumber);
             else
                 WorkWithTheConsole.OutputError("No perfect numbers");
-            WorkWithTheConsole.Output("\n");
         }
 
         /// <summary>
@@ -170,8 +173,7 @@ namespace Algorithmic
         {
             WorkWithTheConsole.OutputTitle("Перевод из десятиричной системы исчисления в двоичную");
             InputNumberInDecimalSystem();
-            TranslationFromDecimalSystemToBinary(numberDecimalSystem);          
-            WorkWithTheConsole.ScreenDelay();
+            TranslationFromDecimalSystemToBinary(numberDecimalSystem);    
         }
 
         static int numberDecimalSystem;
@@ -181,12 +183,13 @@ namespace Algorithmic
         // ввод числа в десятиричной системе
         static public void InputNumberInDecimalSystem()
         {
-            DataValidation.InputValidationNaturalNumber(ref numberDecimalSystem, "Enter a number in a 10-digit number system: ");
+            WorkWithTheConsole.InputInt32("Enter a number in a 10-digit number system: ",ref numberDecimalSystem);
         }
 
         // перевод из десятиричной системы в двоичную
        internal static string TranslationFromDecimalSystemToBinary(int numberDecimalSystem)
         {
+            int numberDecimal = numberDecimalSystem;
             numberBinarySystem = "";
             remainderDivision = "";
             bool flagBool = false;
@@ -208,7 +211,9 @@ namespace Algorithmic
                 numberBinarySystem += remainderDivision[i];
             }
             if (flagBool) numberBinarySystem = "-" + numberBinarySystem;
-            OutputTranslationFromDecimalSystemToBinary(numberDecimalSystem, numberBinarySystem);
+            if (numberBinarySystem == "00" || numberBinarySystem == "01")
+                numberBinarySystem = numberBinarySystem[1].ToString();
+            OutputTranslationFromDecimalSystemToBinary(numberDecimal, numberBinarySystem);
             return numberBinarySystem;
         }
 
