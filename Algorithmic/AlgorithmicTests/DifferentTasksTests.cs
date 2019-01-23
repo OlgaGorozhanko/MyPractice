@@ -155,5 +155,116 @@ namespace AlgorithmicTests
         {
             Assert.AreEqual("1", DifferentTasks.TranslationFromDecimalSystemToBinary(1));
         }
+
+        [TestMethod]
+        public void Factorial_1_Return_1()
+        {
+            Assert.AreEqual(1, DifferentTasks.Factorial(1));
+        }
+
+        [TestMethod]
+        public void Factorial_0_Return_1()
+        {
+            Assert.AreEqual(1, DifferentTasks.Factorial(0));
+        }
+
+        [TestMethod]
+        public void Factorial_2_Return_2()
+        {
+            Assert.AreEqual(2, DifferentTasks.Factorial(2));
+        }
+
+        [TestMethod]
+        public void Factorial_7_Return_5040()
+        {
+            Assert.AreEqual(5040, DifferentTasks.Factorial(7));
+        }
+
+        [TestMethod]
+        public void Factorial_minus2_Return_2()
+        {
+            Assert.AreEqual(0, DifferentTasks.Factorial(-2));
+        }
+
+        [TestMethod]
+        public void Factorial_minus3_Return_2()
+        {
+            Assert.AreEqual(0, DifferentTasks.Factorial(-3));
+        }
+
+        [TestMethod]
+        public void PrimeNumberCheck_3_Return_true()
+        {
+            Assert.AreEqual(true, DifferentTasks.PrimeNumberCheck(3));
+        }
+
+        [TestMethod]
+        public void PrimeNumberCheck_1_Return_true()
+        {
+            Assert.AreEqual(true, DifferentTasks.PrimeNumberCheck(2));
+        }
+
+        [TestMethod]
+        public void PrimeNumberCheck_11_Return_true()
+        {
+            Assert.AreEqual(true, DifferentTasks.PrimeNumberCheck(11));
+        }
+
+        [TestMethod]
+        public void PrimeNumberCheck_4_Return_true()
+        {
+            Assert.AreEqual(false, DifferentTasks.PrimeNumberCheck(4));
+        }
+
+        [TestMethod]
+        public void PrimeNumberCheck_12_Return_true()
+        {
+            Assert.AreEqual(false, DifferentTasks.PrimeNumberCheck(12));
+        }
+
+        [TestMethod]
+        public void PrimeNumberCheck_minus3_Return_true()
+        {
+            Assert.AreEqual(false, DifferentTasks.PrimeNumberCheck(-3));
+        }
+
+        [TestMethod]
+        public void PrimeNumberCheck_minus8_Return_true()
+        {
+            Assert.AreEqual(false, DifferentTasks.PrimeNumberCheck(-8));
+        }
+
+        [TestMethod]
+        public void PrimeNumberCheck_0_Return_true()
+        {
+            Assert.AreEqual(false, DifferentTasks.PrimeNumberCheck(0));
+        }
+
+        [TestMethod]
+        public void FactorialNumbersAsTheProductOfThreeConsecutivePrimes_3_Return_true()
+        {
+            Assert.AreEqual("1 * 2 * 3", DifferentTasks.FactorialNumbersAsTheProductOfThreeConsecutivePrimes(3));
+        }
+
+        [TestMethod]
+        public void FactorialNumbersAsTheProductOfThreeConsecutivePrimes_5_Return_true()
+        {
+            Assert.AreEqual("can not imagine 5! = 120 as a product of three consecutive prime numbers", 
+                DifferentTasks.FactorialNumbersAsTheProductOfThreeConsecutivePrimes(5));
+        }
+
+        [TestMethod]
+        public void FactorialNumbersAsTheProductOfThreeConsecutivePrimes_0_Return_true()
+        {
+            Assert.AreEqual("can not imagine 0! = 1 as a product of three consecutive prime numbers", 
+                DifferentTasks.FactorialNumbersAsTheProductOfThreeConsecutivePrimes(0));
+        }
+
+        [TestMethod]
+        public void FactorialNumbersAsTheProductOfThreeConsecutivePrimes_minus3_Return_true()
+        {
+            Assert.AreNotEqual("1 * 2 * 3", DifferentTasks.FactorialNumbersAsTheProductOfThreeConsecutivePrimes(-2));
+        }
+
     }
 }

@@ -26,7 +26,7 @@ namespace Algorithmic
         // ввод двух целых чисел
         static void InputWholeNumbers()
         {
-            WorkWithTheConsole.InputInt32("Enter 2 whole numbers\n 1st number = ", ref firstNumber);
+            WorkWithTheConsole.InputInt32("Enter 2 whole numbers\number 1st number = ", ref firstNumber);
             WorkWithTheConsole.InputInt32(" 2st number = ", ref secondNumber);           
         }
 
@@ -88,15 +88,15 @@ namespace Algorithmic
         {
             if (naturalNumberFlag == true)
             {
-                WorkWithTheConsole.OutputError("Number 0 it is not natural, therefore it can not be coprime with any number\n");
+                WorkWithTheConsole.OutputError("Number 0 it is not natural, therefore it can not be coprime with any number\number");
             }
             else if (NOD == 1)
             {
-                WorkWithTheConsole.OutputVerity("Numbers " + firstNumber + " and " + secondNumber + " are mutually simple, because their NOD = 1 \n");
+                WorkWithTheConsole.OutputVerity("Numbers " + firstNumber + " and " + secondNumber + " are mutually simple, because their NOD = 1 \number");
             }
             else
             {
-                WorkWithTheConsole.OutputError("Numbers " + firstNumber + " and " + secondNumber + " are not mutually simple, because their NOD != 1 \n");
+                WorkWithTheConsole.OutputError("Numbers " + firstNumber + " and " + secondNumber + " are not mutually simple, because their NOD != 1 \number");
             }
         }
 
@@ -118,7 +118,7 @@ namespace Algorithmic
         // ввод начала и конца отрезка, в котором требуется найти совершенные числа
         static void InputStartAndEndSegment()
         {
-            WorkWithTheConsole.InputInt32("Enter start and end of the line\n Enter start line: ", ref startLine);
+            WorkWithTheConsole.InputInt32("Enter start and end of the line\number Enter start line: ", ref startLine);
             WorkWithTheConsole.InputInt32("Enter end line:", ref finishLine);
         }
 
@@ -220,8 +220,106 @@ namespace Algorithmic
         // вывод на экран решение задачи по переводу числа из десятиричной системы в двоичную
         static void OutputTranslationFromDecimalSystemToBinary(int numberDecimalSystem, string numberBinarySystem)
         {
-            WorkWithTheConsole.Output("Number " + numberDecimalSystem + " in 2-digit number system = " + numberBinarySystem + "\n");
+            WorkWithTheConsole.Output("Number " + numberDecimalSystem + " in 2-digit number system = " + numberBinarySystem + "\number");
         }
 
+        /// <summary>
+        /// TASK: Определить можно ли представить N! в виде произведения трех последовательных простых чисел
+        /// </summary> 
+       public static void RunFactorialNumbersAsTheProductOfThreeConsecutivePrimes()
+        {
+            WorkWithTheConsole.OutputTitle("Ввести натуральное число N. Определить можно ли представить N! в виде произведения трех последовательных простых чисел");
+            InputNaturalNumber();
+            FactorialNumbersAsTheProductOfThreeConsecutivePrimes(numberN);
+        }
+
+        static int numberN;
+        static string multiplication3PrimeNumber = "";
+
+        //ввод натурального числа
+        static void InputNaturalNumber()
+        {            
+            WorkWithTheConsole.InputInt32("Enter natural number: ", ref numberN);
+            if (numberN <= 0)
+            {
+                WorkWithTheConsole.OutputError("This is not a natural number \n");
+                WorkWithTheConsole.InputInt32("Enter natural number: ", ref numberN);
+            }
+        }
+
+        // нахождение факториала числа
+       internal static long Factorial(int number)
+        {
+            long factorial = 1;
+            if (number < 0) factorial = 0;           
+            for(int i=2; i <= number; i++)
+            {
+                factorial *= i;
+            }
+            return factorial;
+        }
+
+        // проверка на принадлежность к простым числам    
+        internal static bool PrimeNumberCheck(int number)
+        {
+            for (int i = 2; i <= Math.Sqrt(number); i++)
+                if (number % i == 0)
+                {
+                        return false;
+                }
+            //знак "<" поставлен для проверки правильности метода FactorialNumbersAsTheProductOfThreeConsecutivePrimes, надо знак "<="
+          //  if (number == 1)
+         //     return  false;
+            if (number < 1) 
+                return false;
+            else
+                return true;
+        }
+
+            // Определить можно ли представить N! в виде произведения трех последовательных простых чисел
+        internal static string FactorialNumbersAsTheProductOfThreeConsecutivePrimes(int number)
+        {
+            int[] array3PrimeNumber = new int[Factorial(number)/2 +1];
+           
+            bool flag = false;
+            int j = 0;
+            for (int i = 1; i < array3PrimeNumber.Length; i++)
+            {                
+                array3PrimeNumber[i] = -1;
+                if (PrimeNumberCheck(i))
+                {
+                    array3PrimeNumber[j] = i;
+                    j++;
+                }                   
+            }
+
+            for(int i = 0; i< array3PrimeNumber.Length - 2; i++)
+            {
+                if(array3PrimeNumber[i] != -1 && array3PrimeNumber[i+1] != -1 && array3PrimeNumber[i+2] != -1)
+                if (Factorial(number) == (array3PrimeNumber[i] * array3PrimeNumber[i + 1] * array3PrimeNumber[i + 2]))
+                {
+                    multiplication3PrimeNumber += array3PrimeNumber[i] + " * " + array3PrimeNumber[i + 1] + " * " + array3PrimeNumber[i + 2];
+                    flag = true;
+                }
+            }
+
+            if (flag)
+            {
+                OutputFactorialNumbersAsTheProductOfThreeConsecutivePrimes(true);
+                return multiplication3PrimeNumber;
+            }
+            else
+            {
+                OutputFactorialNumbersAsTheProductOfThreeConsecutivePrimes(false);
+                return "can not imagine " + number + "! = " + Factorial(number) + " as a product of three consecutive prime numbers";
+            }     
+        }
+
+        static void OutputFactorialNumbersAsTheProductOfThreeConsecutivePrimes(bool flag)
+        {
+            if (flag)
+                WorkWithTheConsole.Output(numberN + "! = " + Factorial(numberN) + ": " + multiplication3PrimeNumber);
+            else WorkWithTheConsole.OutputError("can not imagine " + numberN + "! = " + Factorial(numberN) + " as a product of three consecutive prime numbers");            
+        }
     }
 }

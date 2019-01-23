@@ -10,9 +10,10 @@ namespace Algorithmic
         {
             DifferentTasks.RunMutuallySimpleNumber();
             DifferentTasks.RunPerfectNumbersOnALine();
-            ArraysTasks.RunSummaTwoSmallestAndTwoLargestElementArray();
-            DifferentTasks.RunTranslationOfNumberSystems();            
+            DifferentTasks.RunTranslationOfNumberSystems();
+            DifferentTasks.RunFactorialNumbersAsTheProductOfThreeConsecutivePrimes();
             StringTasks.RunSortText();
+            ArraysTasks.RunSummaTwoSmallestAndTwoLargestElementArray(); 
             ArraysTasks.RunMaximumDoesNotDecreaseSequence();
         }
     }
