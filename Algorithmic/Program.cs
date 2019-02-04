@@ -8,13 +8,15 @@ namespace Algorithmic
     {        
         static void Main(string[] args)
         {
-          //  DifferentTasks.RunMutuallySimpleNumber();
-           // DifferentTasks.RunPerfectNumbersOnALine();
-            DifferentTasks.RunTranslationOfNumberSystems();
-            DifferentTasks.RunFactorialNumbersAsTheProductOfThreeConsecutivePrimes();
-            StringTasks.RunSortText();
-            ArraysTasks.RunSummaTwoSmallestAndTwoLargestElementArray(); 
-            ArraysTasks.RunMaximumDoesNotDecreaseSequence();
+            /*  DifferentTasks.RunMutuallySimpleNumber();
+              DifferentTasks.RunPerfectNumbersOnALine();
+              DifferentTasks.RunTranslationOfNumberSystems();
+              DifferentTasks.RunFactorialNumbersAsTheProductOfThreeConsecutivePrimes();
+              StringTasks.RunSortText();
+              ArraysTasks.RunSummaTwoSmallestAndTwoLargestElementArray(); 
+              ArraysTasks.RunMaximumDoesNotDecreaseSequence();
+              */
+            Console.WriteLine("A=" + (int)'А' +"; a=" + (int)'а'+ "; Я=" + (int)'Я' + "; я=" + (int)'я' + ";");
         }
     }
 }

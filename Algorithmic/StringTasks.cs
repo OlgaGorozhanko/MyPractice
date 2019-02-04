@@ -20,6 +20,7 @@ namespace Algorithmic
         /// </summary>
         static void InputString()
         {
+            stringEntered = "";
             WorkWithTheConsole.InputString("Enter string: ", ref stringEntered);
             if (stringEntered == "")
             {
@@ -98,5 +99,23 @@ namespace Algorithmic
             arrayIntSwap[1] = numberLarger;
             return arrayIntSwap;
         }
+
+        /// <summary>
+        /// TASK: Введите строку из N символов. 
+        /// В функции определить и вывести на экран частоту встречаемости каждой буквы русского алфавита. 
+        /// Определить 5 наиболее часто встречающихся букв. 
+        /// Далее, по предоставленному шифру (вы знаете, что каждой букве русского языка соответствует 1 символ в шифре), 
+        /// попробовать расшифровать изначальный текст
+        /// </summary>
+     public static void RunNumberOfRussianLettersPerLine()
+        {
+            WorkWithTheConsole.OutputTitle("Определить и вывести на экран частоту встречаемости каждой буквы русского алфавита." +
+                "Определить 5 наиболее часто встречающихся букв");
+            InputString();
+        }
+
+
+
+
     }
 }
