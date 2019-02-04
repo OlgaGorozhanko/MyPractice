@@ -8,8 +8,8 @@ namespace Algorithmic
     {        
         static void Main(string[] args)
         {
-            DifferentTasks.RunMutuallySimpleNumber();
-            DifferentTasks.RunPerfectNumbersOnALine();
+          //  DifferentTasks.RunMutuallySimpleNumber();
+           // DifferentTasks.RunPerfectNumbersOnALine();
             DifferentTasks.RunTranslationOfNumberSystems();
             DifferentTasks.RunFactorialNumbersAsTheProductOfThreeConsecutivePrimes();
             StringTasks.RunSortText();

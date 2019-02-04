@@ -141,10 +141,9 @@ namespace AlgorithmicTests
             //act
             int[] actual = ArraysTasks.MaximumDoesNotDecreaseSequence(array);
             //assert 
-            for (int i = 0; i < expected.Length; i++)
-            {
-                Assert.AreEqual(expected[i], actual[i]);
-            }
+            
+                Assert.AreEqual(expected, actual);
+            
         }
 
         [TestMethod]
